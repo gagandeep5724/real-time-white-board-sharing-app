@@ -3,6 +3,7 @@ import { toast, ToastContainer } from "react-toastify";
 import io from "socket.io-client";
 import ClientRoom from "./ClientRoom";
 import JoinCreateRoom from "./JoinCreateRoom";
+import Chatbar from "./Chatbar";
 import Room from "./Room";
 import Sidebar from "./Sidebar";
 import "./style.css";
@@ -22,6 +23,7 @@ const App = () => {
   const [roomJoined, setRoomJoined] = useState(false);
   const [user, setUser] = useState({});
   const [users, setUsers] = useState([]);
+  const [openedChatTab, setOpenedChatTab] = useState(false);
 
   const uuid = () => {
     var S4 = () => {
@@ -54,7 +56,26 @@ const App = () => {
       <ToastContainer />
       {roomJoined ? (
         <>
-          <Sidebar users={users} user={user} socket={socket} />
+          <Sidebar users={users} user={user} socket={socket} />  
+
+          <button
+        type="button"
+        className="btn btn-primary"
+        style={{
+          display: "block",
+          position: "absolute",
+          top: "5%",
+          left: "10%",
+          height: "40px",
+          width: "100px",
+        }}
+        onClick={() => setOpenedChatTab(true)}
+      >
+        Chats
+      </button>
+
+          {openedChatTab && ( <Chatbar setOpenedChatTab={setOpenedChatTab} socket={socket} /> )}
+
           {user.presenter ? (
             <Room
               userNo={userNo}
@@ -63,7 +84,7 @@ const App = () => {
               setUsers={setUsers}
               setUserNo={setUserNo}
             />
-          ) : (
+          ) : (     
             <ClientRoom
               userNo={userNo}
               user={user}

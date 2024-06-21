@@ -10,6 +10,8 @@ const Sidebar = ({ users, user, socket }) => {
   const closeSideBar = () => {
     sideBarRef.current.style.left = -100 + "%";
   };
+
+  
   return (
     <>
       <button

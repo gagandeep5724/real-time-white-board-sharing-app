@@ -47,6 +47,16 @@ io.on("connection", (socket) => {
     imageUrl = data;
     socket.broadcast.to(userRoom).emit("canvasImage", imageUrl);
   });
+ 
+  socket.on("message", (data) => {
+       const {message} = data; 
+       const user= getUsers(socket.id); 
+       if(user) {
+          userLeave(socket.id);
+          socket.broadcast.to(userRoom).emit("messageResponse", { message, name: user.username});
+       }
+  } )
+
 
   socket.on("disconnect", () => {
     const userLeaves = userLeave(socket.id);
