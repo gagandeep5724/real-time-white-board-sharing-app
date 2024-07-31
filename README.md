@@ -34,8 +34,8 @@ Real-Time Communication: Socket.IO
 
 ## Installation Steps
 Clone the repository:
-   git clone https://github.com/your-repo/real-time-whiteboard.git
-   cd real-time-whiteboard
+   git clone [https://github.com/your-repo/real-time-whiteboard.git](https://github.com/gagandeep5724/real-time-white-board-sharing-app.git)
+   cd real-time-white-board-sharing-app
 
 ## Install dependencies:
    npm install
